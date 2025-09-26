@@ -17,7 +17,22 @@ It is containerized with Docker and deployed on the CSIM server.
   - Allows logged-in users to submit reviews (cannot be empty).  
 - **Validations**:
   - Movies require a title and year.  
-  - Reviews require non-empty content.  
+  - Reviews require non-empty content.
+ 
+    ## 🗂 Entity-Relationship (ER) Diagram (Text Format)
+
+User ───────< Review >────── Movie
+| |
+| has_many | belongs_to
+| |
+└──────────────> Review <────┘
+
+
+### Relationships
+- **User → Review**: One user can write many reviews.  
+- **Movie → Review**: One movie can have many reviews.  
+- **Review → User**: Each review belongs to exactly one user.  
+- **Review → Movie**: Each review belongs to exactly one movie.  
 
 ---
 
