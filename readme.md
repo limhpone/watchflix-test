@@ -1,8 +1,15 @@
 # Watchflix – Movie Review Application 🎬
 Aye Khin Khin Hpone(Yolanda Lim)_125970
 A Ruby on Rails application for reviewing and discussing movies.  
-This project is part of **FSAD 2024 Midterm Lab Part II** (10% of final grade).  
 It is containerized with Docker and deployed on the CSIM server.  
+The goal of this lab was to set up a production-ready Rails app with **PostgreSQL and Docker**, deployed on the **CSIM server**.
+
+---
+## Application Description
+
+**Watchflix** is a platform where users can review and discuss their favorite movies.  
+Users can add a movie, browse movies in the system, and write reviews for them.  
+Each movie shows the number of reviews it has received.  
 
 ---
 
@@ -19,14 +26,28 @@ It is containerized with Docker and deployed on the CSIM server.
   - Movies require a title and year.  
   - Reviews require non-empty content.
  
-    ## 🗂 Entity-Relationship (ER) Diagram (Text Format)
+---
+## 🗂 Basic System Architecture
 
-User ───────< Review >────── Movie
-| |
-| has_many | belongs_to
-| |
-└──────────────> Review <────┘
+- **Movie**  
+  - id (integer)  
+  - title (string)  
+  - year (string)  
 
+- **Review**  
+  - id (integer)  
+  - content (string)  
+  - user_id (integer)  
+  - movie_id (integer)  
+
+- **User**  
+  - id (integer)  
+  - first_name (string)  
+  - last_name (string)  
+  - email (string)  
+  - password (string)  
+
+---
 
 ### Relationships
 - **User → Review**: One user can write many reviews.  
@@ -62,49 +83,24 @@ docker build -t yourdockerhubusername/watchflix:latest .
 3. Run with Docker Compose
 docker-compose up
 
-
-App will be available at: http://localhost:3000
-
-4. Push Image to Docker Hub
-docker login
-docker push yourdockerhubusername/watchflix:latest
-
-5. Deploy on CSIM Server
-ssh student@csim.ait.ac.th
-docker pull yourdockerhubusername/watchflix:latest
-docker run -d -p <your-port>:3000 --name stXXXXXX_movie_db yourdockerhubusername/watchflix:latest
-
-
-Example: http://csim.ait.ac.th:3001
-
-## 🗂 System Architecture
-
-Movie: title, year
-
-Review: content, movie_id, user_id
-
-User: first_name, last_name, email, password
-
-(See diagram in assignment sheet)
+App will be available at: http://localhost:3000 
 
 📄 Submission Details
 
-Name: [Your Name]
+Name: Aye Khin Khin Hpone (Yolanda Lim)
 
-Student ID: [Your ID]
+Student ID: st125970
 
-GitLab Repo URL: [link here]
+GitLab Repo URL: https://gitlab.com/ait-fsad-2024/watchflix-st125970
 
-CSIM Deployment URL: [http://csim.ait.ac.th
-:PORT]
+CSIM Deployment URL: http://csim.ait.ac.th:3001
 
-Docker Hub Image URL: [https://hub.docker.com/r/yourdockerhubusername/watchflix
-]
+Docker Hub Image URL: https://hub.docker.com/r/yolandalim/watchflix
 
-## 📝 Notes
+📝 Notes
 
-Use different ports if teammates are on the same server.
+Application passes validation rules (no empty movies or reviews).
 
-Container names prefixed with Student ID (e.g., st123456_movie_db).
+Deployment tested locally and on CSIM server.
 
-Validations prevent empty movie titles/years and empty reviews.
+Containerized using Rails + PostgreSQL + Docker Compose.
